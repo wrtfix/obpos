@@ -35,9 +35,9 @@ public class PaymentInfoCash extends PaymentInfo {
     public PaymentInfo copyPayment(){
         return new PaymentInfoCash(m_dTotal, m_dPaid);
     }
-    
+    //decia cash... ahora dice contado
     public String getName() {
-        return "cash";
+        return "contado";
     }   
     public double getTotal() {
         return m_dTotal;

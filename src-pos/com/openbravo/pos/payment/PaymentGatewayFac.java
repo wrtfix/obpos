@@ -26,7 +26,11 @@ public class PaymentGatewayFac {
     /** Creates a new instance of PaymentGatewayFac */
     private PaymentGatewayFac() {
     }
-    
+    /*
+     * Esto se deve editar en el caso de que se creen nuevas formas de 
+     * pago via internet. Usamos la opcion external ya que utilizaremos 
+     * elemento externos a la aplicacion (posnet)
+     */
     public static PaymentGateway getPaymentGateway(AppProperties props) {
         
         String sReader = props.getProperty("payment.gateway");
@@ -46,7 +50,7 @@ public class PaymentGatewayFac {
         } else if ("PaymentsGateway.net".equals(sReader)) {
             return new PaymentGatewayPGNET(props);
         } else {
-            return null;
+            return null;            
         }
     }      
 }

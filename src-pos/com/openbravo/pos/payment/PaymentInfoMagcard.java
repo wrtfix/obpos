@@ -71,19 +71,27 @@ public class PaymentInfoMagcard extends PaymentInfo {
     public double getTotal() {
         return m_dTotal;
     }         
-    
+    /*Se considera que el pago fue OK al emitir un mensaje en m_sAutorization
+     * Si es null, es que hubo un error
+    */
     public boolean isPaymentOK() {
         return m_sAuthorization != null;
-    }    
+    }
+    //Nombre del titular como figura en la tarjeta
     public String getHolderName() {
         return m_sHolderName;
     }
+    //Numero de Tarjeta
     public String getCardNumber() {
         return m_sCardNumber;
     }
+    /*
+     * Expiracion de la tarjeta
+     */
     public String getExpirationDate() {
         return m_sExpirationDate;
-    }    
+    }
+    // ID de transaccion (#de cupon)
     public String getTransactionID() {
         return m_sTransactionID;
     }

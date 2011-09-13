@@ -26,6 +26,7 @@ import com.openbravo.pos.forms.AppLocal;
 import com.openbravo.pos.payment.ConfigPaymentPanelCaixa;
 import com.openbravo.pos.payment.ConfigPaymentPanelEmpty;
 import com.openbravo.pos.payment.ConfigPaymentPanelGeneric;
+import com.openbravo.pos.payment.PaymentPanelPosnet;
 import com.openbravo.pos.payment.ConfigPaymentPanelLinkPoint;
 import com.openbravo.pos.payment.PaymentConfiguration;
 import java.util.HashMap;
@@ -61,6 +62,7 @@ public class JPanelConfigPayment extends javax.swing.JPanel implements PanelConf
         initPayments("Firs Data / LinkPoint / YourPay", new ConfigPaymentPanelLinkPoint());
         initPayments("PaymentsGateway.net", new ConfigPaymentPanelGeneric());
         initPayments("La Caixa (Spain)", new ConfigPaymentPanelCaixa());
+        //initPayments("Posnet-Argentina", new PaymentPanelPosnet());
         
         // Lector de tarjetas.
         jcboCardReader.addItem("Not defined");
@@ -68,6 +70,7 @@ public class JPanelConfigPayment extends javax.swing.JPanel implements PanelConf
         jcboCardReader.addItem("Alternative");
         jcboCardReader.addItem("Intelligent");
         jcboCardReader.addItem("Keyboard");
+        jcboCardReader.addItem("Posnet");
     }
     
     public boolean hasChanged() {

@@ -32,7 +32,7 @@ public class PaymentInfoFree extends PaymentInfo {
         return new PaymentInfoFree(m_dTotal);
     }    
     public String getName() {
-        return "free";
+        return "gratis";
     }   
     public double getTotal() {
         return m_dTotal;

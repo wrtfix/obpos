@@ -39,6 +39,8 @@ public class PaymentPanelFac {
             return new PaymentPanelMagCard(new MagCardReaderAlternative(), notifier);
         } else if ("Keyboard".equals(sReader)) {
             return new PaymentPanelType(notifier);
+        } else if ("Posnet".equals(sReader)) {
+            return new PaymentPanelPosnet();
         } else { // "Not defined
             return new PaymentPanelBasic(notifier);
         }
