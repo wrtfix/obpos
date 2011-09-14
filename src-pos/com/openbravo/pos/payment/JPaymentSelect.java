@@ -186,16 +186,27 @@ public abstract class JPaymentSelect extends javax.swing.JDialog
         public String getLabelKey() { return "tab.paper"; }
         public String getIconKey() { return "/com/openbravo/images/knotes.png"; }
     }
+   //Funcion que crea la visual de la tarjeta
+//    public class JPaymentMagcardCreator implements JPaymentCreator {
+//        public JPaymentInterface createJPayment() {
+//            return new JPaymentMagcard(app, JPaymentSelect.this);
+//        }
+//        public String getKey() { return "payment.magcard"; }
+//        public String getLabelKey() { return "tab.magcard"; }
+//        public String getIconKey() { return "/com/openbravo/images/vcard.png"; }
+//    }
    
+    /*Funcion que reemplaza a la existente. Tomo el pago de tarjeta como un pago contado
+      Localice la funcionalidad de tarjetas en la clase JPaymentMagcardPosnet*/
     public class JPaymentMagcardCreator implements JPaymentCreator {
         public JPaymentInterface createJPayment() {
-            return new JPaymentMagcard(app, JPaymentSelect.this);
+            return new JPaymentMagcardPosnet(JPaymentSelect.this, dlSystem);
         }
         public String getKey() { return "payment.magcard"; }
         public String getLabelKey() { return "tab.magcard"; }
         public String getIconKey() { return "/com/openbravo/images/vcard.png"; }
     }
-        
+    
     public class JPaymentFreeCreator implements JPaymentCreator {
         public JPaymentInterface createJPayment() {
             return new JPaymentFree(JPaymentSelect.this);

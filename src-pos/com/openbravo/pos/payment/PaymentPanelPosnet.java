@@ -10,20 +10,96 @@
  */
 package com.openbravo.pos.payment;
 
-import com.openbravo.pos.forms.AppConfig;
-import javax.swing.JPanel;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import javax.swing.JComponent;
+import com.openbravo.pos.forms.AppLocal;
+import com.openbravo.pos.util.LuhnAlgorithm;
 
 /**
  *
- * @author Juanchisan
+ * @author adrianromero
  */
-public class PaymentPanelPosnet extends javax.swing.JPanel implements PaymentPanel{
-
-    /** Creates new form PaymentPanelPosnet */
-    public PaymentPanelPosnet() {
-        initComponents();
+public class PaymentPanelPosnet extends javax.swing.JPanel /*implements PaymentPanel*/ {
+    
+    private double m_dTotal;
+    private String m_sTransactionID;
+    private JPaymentNotifier m_notifier;
+    
+    /** Creates new form JPaymentPosnet */
+    public PaymentPanelPosnet(JPaymentNotifier notifier) {
+        
+        m_notifier = notifier;
+        initComponents();          
+    }
+    
+    public JComponent getComponent(){
+        return this;
+    }
+    
+    public void activate(String sTransaction, double dTotal) {
+        
+        m_sTransactionID = sTransaction;
+        m_dTotal = dTotal;        
+    }
+      
+//    @Override
+//    public PaymentInfoMagcard getPaymentInfoMagcard() {
+//                null, null, null, m_sTransactionID, m_dTotal);
+//    }
+    /*
+    private void resetState() {
+        
+        m_notifier.setStatus(false, false);  
+              
+        m_jHolderName.setText(null);
+        m_jCardNumber.setText(null);
+        m_jExpirationDate.setText(null);
+    }
+    
+    public PaymentInfoMagcard getPaymentInfoMagcard() {
+        
+        if (m_dTotal > 0.0) {
+            return new PaymentInfoMagcard(
+                    m_jHolderName.getText(),
+                    m_jCardNumber.getText(), 
+                    m_jExpirationDate.getText(),
+                    null,
+                    null,                    
+                    null,                    
+                    m_sTransactionID,
+                    m_dTotal);
+        } else {
+            return new PaymentInfoMagcardRefund(
+                    m_jHolderName.getText(),
+                    m_jCardNumber.getText(), 
+                    m_jExpirationDate.getText(),
+                    null,
+                    null,                    
+                    null,                    
+                    m_sTransactionID,
+                    m_dTotal);
+        }
+    }    
+    
+    private class RecalculateName implements PropertyChangeListener {
+        public void propertyChange(PropertyChangeEvent evt) {
+            boolean isvalid = isValidHolder() && isValidCardNumber() && isValidExpirationDate();
+            m_notifier.setStatus(isvalid, isvalid);
+        }
+    }  
+    
+    private boolean isValidHolder() {
+        return !(m_jHolderName.getText() == null || m_jHolderName.getText().equals(""));
+    }
+    private boolean isValidCardNumber() {
+        return (LuhnAlgorithm.checkCC(m_jCardNumber.getText()) && m_jCardNumber.getText().length()>13 && m_jCardNumber.getText().length()<20);
+    }
+    private boolean isValidExpirationDate() {
+        return !(m_jExpirationDate.getText() == null || m_jExpirationDate.getText().length() != 4);
     }
 
+*/
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -33,107 +109,96 @@ public class PaymentPanelPosnet extends javax.swing.JPanel implements PaymentPan
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jCBTarjeta = new javax.swing.JComboBox();
         jCBPagos = new javax.swing.JComboBox();
         jTFCupon = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-
-        jLabel1.setText("Tarjeta");
-
-        jLabel2.setText("Cantidad de pagos");
 
         jLabel3.setText("Número de Cupón");
 
         jCBTarjeta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBTarjeta.setEnabled(false);
 
         jCBPagos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBPagos.setEnabled(false);
 
+        jTFCupon.setEditable(false);
         jTFCupon.setName(""); // NOI18N
-
-        jLabel4.setText("Interes");
 
         jLabel5.setText("Total a pagar");
 
-        jLabel6.setText("Cuotas de");
+        jLabel2.setText("Cantidad de pagos");
 
-        jTextField1.setEditable(false);
+        jLabel1.setText("Tarjeta");
 
         jTextField2.setEditable(false);
 
-        jTextField3.setEditable(false);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGap(53, 53, 53)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTFCupon, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE)
+                            .addComponent(jCBPagos, 0, 168, Short.MAX_VALUE)
+                            .addComponent(jCBTarjeta, 0, 168, Short.MAX_VALUE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jCBTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jCBPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFCupon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap(67, Short.MAX_VALUE))
+        );
+
+        jTextField2.getAccessibleContext().setAccessibleName("jTTotalCInteres");
+
+        jTabbedPane1.addTab("tab1", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCBPagos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCBTarjeta, 0, 155, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 5, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(43, 43, 43)
-                        .addComponent(jTFCupon)))
-                .addGap(54, 54, 54))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jCBTarjeta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jCBPagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTFCupon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(110, Short.MAX_VALUE))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-
-        jTextField1.getAccessibleContext().setAccessibleName("jTInteres");
-        jTextField2.getAccessibleContext().setAccessibleName("jTTotalCInteres");
-        jTextField3.getAccessibleContext().setAccessibleName("jTCuotasde");
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -142,31 +207,11 @@ public class PaymentPanelPosnet extends javax.swing.JPanel implements PaymentPan
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTFCupon;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
-    
-    /*
-     * Estoy probando esta clase
-     */
-    
-    @Override
-    public JPanel getComponent() {
-        return this;
-    }
 
-    @Override
-    public void activate(String sTransaction, double dTotal) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public PaymentInfoMagcard getPaymentInfoMagcard() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

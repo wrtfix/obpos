@@ -41,7 +41,7 @@ public class PaymentInfoMagcardPosnet extends PaymentInfo {
         m_sErrorMessage = null;
         m_sReturnMessage = null;
     }
-     
+   
     @Override
     public String getName() {
         return "Posnet";
