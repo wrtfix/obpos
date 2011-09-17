@@ -122,10 +122,10 @@ public class PaymentPanelPosnet extends javax.swing.JPanel /*implements PaymentP
 
         jLabel3.setText("Número de Cupón");
 
-        jCBTarjeta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+//jCBTarjeta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBTarjeta.setEnabled(false);
 
-        jCBPagos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+//jCBPagos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jCBPagos.setEnabled(false);
 
         jTFCupon.setEditable(false);
