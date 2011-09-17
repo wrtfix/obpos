@@ -141,8 +141,11 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
             btn.addActionListener(new AddAmount(amount));
             jPanel6.add(btn);  
         }
-        public void addItem(String item) {
-            jCBTarjeta.addItem(item);            
+        public void addTarjeta(String tarjeta) {
+            jCBTarjeta.addItem(tarjeta);
+        }
+        public void addCuota(String cuota){
+            jCBPagos.addItem(cuota);
         }
     }
     
@@ -230,7 +233,7 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
         jPanel4.add(jLabel1);
         jLabel1.setBounds(60, 100, 35, 14);
 
-        jCBPagos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBPagos.setModel(new javax.swing.DefaultComboBoxModel(new String[]{}));
         jPanel4.add(jCBPagos);
         jCBPagos.setBounds(180, 130, 130, 20);
 
@@ -262,7 +265,7 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
         jPanel4.add(jTextField3);
         jTextField3.setBounds(180, 230, 130, 20);
 
-        jCBTarjeta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBTarjeta.setModel(new javax.swing.DefaultComboBoxModel(new String[] {}));
         jPanel4.add(jCBTarjeta);
         jCBTarjeta.setBounds(150, 100, 160, 20);
 
