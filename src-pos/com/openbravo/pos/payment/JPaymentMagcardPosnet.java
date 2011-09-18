@@ -141,12 +141,10 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
             btn.addActionListener(new AddAmount(amount));
             jPanel6.add(btn);  
         }
-        public void addTarjeta(String tarjeta) {
-            jCBTarjeta.addItem(tarjeta);
+        public void addTarjeta(String tarjeta,int cuota, double interes) {
+       
         }
-        public void addCuota(String cuota){
-            jCBPagos.addItem(cuota);
-        }
+        
     }
     
     private class AddAmount implements ActionListener {        
