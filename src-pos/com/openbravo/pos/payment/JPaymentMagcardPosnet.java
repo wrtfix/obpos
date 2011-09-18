@@ -45,7 +45,7 @@ import javax.swing.SwingConstants;
 public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymentInterface {
     
     private JPaymentNotifier m_notifier;
-
+    private Vector<JPaymennteElementMagCard> tarjetas;
     private double m_dPaid;
     private double m_dTotal;    
     
@@ -70,7 +70,19 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
                 msg.show(this);
             }
         }
-        
+        //aca agrego las tarjetas al combo
+        int cont =0;
+        while (cont < tarjetas.size()){
+            // con esto recorro todas las tarjetas y las agrego en casos de que no esten
+            int cantidadItem = jCBTarjeta.getItemCount();
+            int sig = 0;
+            while ( sig < cantidadItem && !jCBTarjeta.getItemAt(sig).equals(tarjetas.elementAt(cont).getNombre()) ){
+                sig++;
+            }
+            if ( sig == cantidadItem )
+               jCBTarjeta.addItem(tarjetas.elementAt(cont).getNombre());
+            cont++;
+        }
     }
     
     public void activate(CustomerInfoExt customerext, double dTotal, String transID) {
@@ -124,11 +136,11 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
         
         private DataLogicSystem dlSystem;
         private ThumbNailBuilder tnbbutton;
-        private Vector<JPaymennteElementMagCard> tarjetas;
+
         public ScriptPaymentCash(DataLogicSystem dlSystem) {
             this.dlSystem = dlSystem;
             tnbbutton = new ThumbNailBuilder(64, 54, "com/openbravo/images/cash.png");
-            this.tarjetas = new Vector<JPaymennteElementMagCard>();
+            tarjetas = new Vector<JPaymennteElementMagCard>();
         }
         
         public void addButton(String image, double amount) {
@@ -143,16 +155,29 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
             btn.addActionListener(new AddAmount(amount));
             jPanel6.add(btn);  
         }
-        public void addTarjeta(String tarjeta,int cuota, double interes) {
-            JPaymennteElementMagCard t = new JPaymennteElementMagCard(tarjeta);
-            t.addCuota(cuota, interes);
-            tarjetas.add(t);
-
-
+        // aca materializo el xml
+        public void addTarjeta(String nombreTarjeta,int cuota, double interes) {
+            JPaymennteElementMagCard t = new JPaymennteElementMagCard(nombreTarjeta);
+            //si no existe la tarjeta en el vector la agrego
+            if (!tarjetas.contains(t)){
+                t.addCuota(cuota, interes);
+                tarjetas.add(t);
+            }
+            else
+            {
+                int cont = 0;
+                while (cont <tarjetas.size()){
+                    if (tarjetas.elementAt(cont).getNombre().equals(nombreTarjeta))
+                        tarjetas.elementAt(cont).addCuota(cuota, interes);
+                    
+                    cont++;
+                }
+            }
         }
         
     }
-    
+    // hay que agrgar el metodo que cuando se realizar un click en la seleccion de las
+    // tarjetas que se agreguen los tipos de cuotas
     private class AddAmount implements ActionListener {        
         private double amount;
         public AddAmount(double amount) {
@@ -302,7 +327,6 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
 
         add(jPanel2, java.awt.BorderLayout.LINE_END);
     }// </editor-fold>//GEN-END:initComponents
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox jCBPagos;
