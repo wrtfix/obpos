@@ -5,6 +5,7 @@
 
 package com.openbravo.pos.payment;
 import java.util.Hashtable;
+import java.util.Vector;
 /**
  *
  * @author alumno
@@ -21,5 +22,14 @@ public class JPaymennteElementMagCard {
     }
     public Double getCuota(Integer cuota){
         return this.cuotas.get(cuota);
+    }
+    public Hashtable<Integer,Double> getCuotas(){
+        return this.cuotas;
+    }
+    public String getNombre(){
+        return this.nombre;
+    }
+    public boolean equals(JPaymennteElementMagCard t){
+        return this.nombre.equals(t.getNombre());
     }
 }
