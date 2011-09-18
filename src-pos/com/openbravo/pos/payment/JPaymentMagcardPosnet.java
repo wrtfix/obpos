@@ -33,6 +33,7 @@ import com.openbravo.pos.util.RoundUtils;
 import com.openbravo.pos.util.ThumbNailBuilder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
@@ -123,10 +124,11 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
         
         private DataLogicSystem dlSystem;
         private ThumbNailBuilder tnbbutton;
-        
+        private Vector<JPaymennteElementMagCard> tarjetas;
         public ScriptPaymentCash(DataLogicSystem dlSystem) {
             this.dlSystem = dlSystem;
             tnbbutton = new ThumbNailBuilder(64, 54, "com/openbravo/images/cash.png");
+            this.tarjetas = new Vector<JPaymennteElementMagCard>();
         }
         
         public void addButton(String image, double amount) {
@@ -142,7 +144,11 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
             jPanel6.add(btn);  
         }
         public void addTarjeta(String tarjeta,int cuota, double interes) {
-       
+            JPaymennteElementMagCard t = new JPaymennteElementMagCard(tarjeta);
+            t.addCuota(cuota, interes);
+            tarjetas.add(t);
+
+
         }
         
     }
