@@ -46,9 +46,7 @@ public class JPaymentCheque extends javax.swing.JPanel implements JPaymentInterf
     
     public void activate(CustomerInfoExt customerext, double dTotal, String transID) {
         
-        m_dTotal = dTotal;
-        
-        
+        m_dTotal = dTotal;       
         m_jTendered.reset();
         m_jTendered.activate();
         

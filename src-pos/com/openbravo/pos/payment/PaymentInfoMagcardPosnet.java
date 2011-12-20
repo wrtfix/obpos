@@ -10,58 +10,56 @@ package com.openbravo.pos.payment;
 
 public class PaymentInfoMagcardPosnet extends PaymentInfo {
     // monto total
-    protected double m_dTotal;
+   // protected Double m_dTotal;
     //Tarjeta y cantidad de cuotas 
     protected String m_sMagcardName;
-    protected String m_sCuotas;
+    protected Integer m_iCuotas;
     //coeficiente del interes generado por las cuotas de la tarjeta
-    protected double m_dInteres;
+    protected Double m_dInteres;
     //Resultado de la inclucion del interes en el Total
-    protected double m_dTotalCInteres;
+    protected Double m_dTotalCInteres;
     //ID transaccion
-    protected String m_sTransactionID;
+    protected Double m_dTotalSInteres;
     //Autorizacion (numero de cupon)
     protected String m_sAuthorization;    
-    //
-    protected String m_sErrorMessage;
-    protected String m_sReturnMessage;
+    // no se usa
+    protected String m_sTransactionID;
+    
+
     
 /* Creates a new instance of PaymentInfoMagcardPosnet */
-     public PaymentInfoMagcardPosnet(String sMagcardName, String sCuotas, double dTotalCInteres, double dInteres,String sTransactionID, double dTotal) {
+     public PaymentInfoMagcardPosnet(String sMagcardName, Integer iCuotas, Double dTotalCInteres, Double dInteres, Double dTotalSInteres,String sAuthorization){
         
         m_sMagcardName = sMagcardName; //se carga del combolist
-        m_sCuotas = sCuotas;  //combolist
+        m_iCuotas = iCuotas;  //combolist
         m_dTotalCInteres = dTotalCInteres; //se calcula de la planilla
         m_dInteres = dInteres; //s saca del xml
-             
-        m_sTransactionID = sTransactionID; // generado por el sistema
-        m_dTotal = dTotal;
+        m_dTotalSInteres = dTotalSInteres;
+        m_sAuthorization = sAuthorization;//se carga del label
+        m_sTransactionID = sAuthorization;//supongo que es la utorizaciono numero de cupon
         
-        m_sAuthorization = null;//se carga del label
-        m_sErrorMessage = null;
-        m_sReturnMessage = null;
+//       m_dTotal = dTotal;
+//       m_sErrorMessage = null;
+//       m_sReturnMessage = null;
     }
    
     @Override
     public String getName() {
-        return "Posnet";
+        return "Tarjeta-Posnet";
     }
 //ver si va dTotalCInteres o esto
     @Override
     public double getTotal() {
-        return m_dTotal;
+        return m_dTotalCInteres;
     }
 
     @Override
     public PaymentInfo copyPayment(){
-        PaymentInfoMagcardPosnet p= new PaymentInfoMagcardPosnet( m_sMagcardName, m_sCuotas, m_dTotalCInteres, m_dInteres, m_sTransactionID, m_dTotal);
-        p.m_sAuthorization = this.m_sAuthorization;
-        p.m_sErrorMessage = this.m_sErrorMessage;
-        return p;
+        return new PaymentInfoMagcardPosnet(m_sMagcardName , m_iCuotas, m_dTotalCInteres, m_dInteres, m_dTotalSInteres,m_sAuthorization);
     }
 
     @Override
     public String getTransactionID() {
-        return m_sTransactionID;
+        return m_sAuthorization;
     }
 }
