@@ -94,18 +94,11 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
         }
      */
     
-    // [VER] que sentido tiene hacer esto o es como el cheque
     public PaymentInfo executePayment() {
 
-        if ((m_dPaid - m_dTotal >= 0.0)&&(cuponAutorizado)) {
-            // pago completo
-            Double m_dTotalSInteres = m_dPaid;
-            return new PaymentInfoMagcardPosnet(m_sTarjetaActual, m_iCuotasActual, m_dTotalCInteres, m_dInteresActual, m_dTotalSInteres, jTFAutorization.getText());
-        
-        } else {
-            // pago parcial  [ver como seria]
-            return new PaymentInfoCash(m_dPaid, m_dPaid);
-        }        
+        //Ver como se hace cuando el pago se hace parte tarjeta, parte en otr cosa
+        Double m_dTotalSInteres = m_dPaid;
+        return new PaymentInfoMagcardPosnet(m_sTarjetaActual, m_iCuotasActual, m_dTotalCInteres, m_dInteresActual, m_dTotalSInteres, jTFAutorization.getText());       
     }
     public Component getComponent() {
         return this;
@@ -155,7 +148,7 @@ public class JPaymentMagcardPosnet extends javax.swing.JPanel implements JPaymen
         }
        
         // Materializacion del XML en el vector<JPaymentElementMagcard>
-        public void addTarjeta(String nombreTarjeta,int cuota, double interes) {
+        public void addTarjeta(String nombreTarjeta, int cuota, double interes) {
             
             for(JPaymentElementMagCard t : tarjetas){
                 if(t.getNombre().equals(nombreTarjeta)){

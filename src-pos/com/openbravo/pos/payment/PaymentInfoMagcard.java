@@ -71,7 +71,7 @@ public class PaymentInfoMagcard extends PaymentInfo {
     public double getTotal() {
         return m_dTotal;
     }         
-    /*Se considera que el pago fue OK al emitir un mensaje en m_sAutorization
+    /*Se considera que el pago fue OK al emitir el numero de autorizacion
      * Si es null, es que hubo un error
     */
     public boolean isPaymentOK() {

@@ -24,13 +24,19 @@ import java.util.LinkedList;
 
 public class PaymentInfoList {
     
+    /**
+     * Utiliza la estructura LinkedList(lista enlazada)que se especializa en hacer 
+     * rapido las insersiones y las eliminaciones, pero es mala para ser recorrida.
+     */
     private LinkedList<PaymentInfo> m_apayment;
     
     /** Creates a new instance of PaymentInfoComposed */
     public PaymentInfoList() {
         m_apayment = new LinkedList<PaymentInfo>();
     }
-        
+    /**
+     * 
+     */    
     public double getTotal() {
         
         double dTotal = 0.0;

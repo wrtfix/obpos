@@ -26,7 +26,6 @@ import com.openbravo.pos.forms.AppLocal;
 import com.openbravo.pos.payment.ConfigPaymentPanelCaixa;
 import com.openbravo.pos.payment.ConfigPaymentPanelEmpty;
 import com.openbravo.pos.payment.ConfigPaymentPanelGeneric;
-import com.openbravo.pos.payment.PaymentPanelPosnet;
 import com.openbravo.pos.payment.ConfigPaymentPanelLinkPoint;
 import com.openbravo.pos.payment.PaymentConfiguration;
 import java.util.HashMap;

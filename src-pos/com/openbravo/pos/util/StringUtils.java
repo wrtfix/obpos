@@ -26,7 +26,9 @@ import java.io.InputStream;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Random;
-
+/*
+ * Averiguar que hace esta clase... para que sirve
+ */
 public class StringUtils {
     
     private static final char [] hexchars = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};

@@ -33,7 +33,6 @@ import com.openbravo.pos.payment.PaymentInfoMagcard;
 import com.openbravo.pos.util.StringUtils;
 
 /**
- *
  * @author adrianromero
  */
 public class TicketInfo implements SerializableRead, Externalizable {
@@ -229,7 +228,10 @@ public class TicketInfo implements SerializableRead, Externalizable {
             return m_Customer.getId();
         }
     }
-    
+    /*
+     * Metodo sobrecargado el cual devuelve el TransactionID(que es el 
+     * #de Autorizacion) o en su defecto uno aleatorio
+     */
     public String getTransactionID(){
         return (getPayments().size()>0)
             ? ( getPayments().get(getPayments().size()-1) ).getTransactionID()

@@ -26,6 +26,7 @@ import com.openbravo.format.Formats;
 import com.openbravo.pos.customers.CustomerInfoExt;
 import com.openbravo.pos.util.RoundUtils;
 
+//Completar con el banco y el numero de cheque. pasarlo a la DB y imprimirlo
 public class JPaymentCheque extends javax.swing.JPanel implements JPaymentInterface {
     
     private JPaymentNotifier m_notifier;
@@ -50,8 +51,7 @@ public class JPaymentCheque extends javax.swing.JPanel implements JPaymentInterf
         m_jTendered.reset();
         m_jTendered.activate();
         
-        printState();
-        
+        printState(); 
     }
     public PaymentInfo executePayment() {
         return new PaymentInfoTicket(m_dPaid, "cheque");      
@@ -99,6 +99,10 @@ public class JPaymentCheque extends javax.swing.JPanel implements JPaymentInterf
         jPanel4 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         m_jMoneyEuros = new javax.swing.JLabel();
+        m_jMoneyEuros1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        m_jMoneyEuros2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -121,28 +125,56 @@ public class JPaymentCheque extends javax.swing.JPanel implements JPaymentInterf
 
         jLabel8.setText(AppLocal.getIntString("Label.InputCash")); // NOI18N
         jPanel4.add(jLabel8);
-        jLabel8.setBounds(20, 20, 100, 15);
+        jLabel8.setBounds(20, 80, 100, 14);
 
-        m_jMoneyEuros.setBackground(new java.awt.Color(153, 153, 255));
+        m_jMoneyEuros.setBackground(new java.awt.Color(255, 255, 255));
         m_jMoneyEuros.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         m_jMoneyEuros.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
         m_jMoneyEuros.setOpaque(true);
         m_jMoneyEuros.setPreferredSize(new java.awt.Dimension(150, 25));
         jPanel4.add(m_jMoneyEuros);
-        m_jMoneyEuros.setBounds(120, 20, 150, 25);
+        m_jMoneyEuros.setBounds(120, 80, 150, 25);
+
+        m_jMoneyEuros1.setBackground(new java.awt.Color(153, 153, 255));
+        m_jMoneyEuros1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        m_jMoneyEuros1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
+        m_jMoneyEuros1.setOpaque(true);
+        m_jMoneyEuros1.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel4.add(m_jMoneyEuros1);
+        m_jMoneyEuros1.setBounds(120, 20, 150, 25);
+
+        jLabel9.setText(AppLocal.getIntString("Label.InputCash")); // NOI18N
+        jPanel4.add(jLabel9);
+        jLabel9.setBounds(20, 20, 100, 14);
+
+        jLabel10.setText(AppLocal.getIntString("Label.InputCash")); // NOI18N
+        jPanel4.add(jLabel10);
+        jLabel10.setBounds(20, 120, 100, 14);
+
+        m_jMoneyEuros2.setBackground(new java.awt.Color(255, 255, 255));
+        m_jMoneyEuros2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        m_jMoneyEuros2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(javax.swing.UIManager.getDefaults().getColor("Button.darkShadow")), javax.swing.BorderFactory.createEmptyBorder(1, 4, 1, 4)));
+        m_jMoneyEuros2.setOpaque(true);
+        m_jMoneyEuros2.setPreferredSize(new java.awt.Dimension(150, 25));
+        jPanel4.add(m_jMoneyEuros2);
+        m_jMoneyEuros2.setBounds(120, 120, 150, 25);
 
         add(jPanel4, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private com.openbravo.editor.JEditorKeys m_jKeys;
     private javax.swing.JLabel m_jMoneyEuros;
+    private javax.swing.JLabel m_jMoneyEuros1;
+    private javax.swing.JLabel m_jMoneyEuros2;
     private com.openbravo.editor.JEditorCurrencyPositive m_jTendered;
     // End of variables declaration//GEN-END:variables
     

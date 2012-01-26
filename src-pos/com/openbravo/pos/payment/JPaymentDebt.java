@@ -28,7 +28,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 /**
- *
  * @author  adrianromero
  */
 public class JPaymentDebt extends javax.swing.JPanel implements JPaymentInterface {
@@ -55,10 +54,8 @@ public class JPaymentDebt extends javax.swing.JPanel implements JPaymentInterfac
         
         this.customerext = customerext;
         m_dTotal = dTotal;
-        
         m_jTendered.reset();
         
-        // 
         if (customerext == null) {
             m_jName.setText(null);
             m_jNotes.setText(null);
@@ -68,8 +65,7 @@ public class JPaymentDebt extends javax.swing.JPanel implements JPaymentInterfac
             
             m_jKeys.setEnabled(false);
             m_jTendered.setEnabled(false);
-            
-            
+                
         } else {            
             m_jName.setText(customerext.getName());
             m_jNotes.setText(customerext.getNotes());
@@ -112,7 +108,6 @@ public class JPaymentDebt extends javax.swing.JPanel implements JPaymentInterfac
             } 
 
             m_jMoneyEuros.setText(Formats.CURRENCY.formatValue(new Double(m_dPaid)));
-            
             
             if (RoundUtils.compare(RoundUtils.getValue(customerext.getCurdebt()) + m_dPaid, RoundUtils.getValue(customerext.getMaxdebt())) >= 0)  { 
                 // maximum debt exceded

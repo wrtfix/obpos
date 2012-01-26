@@ -23,7 +23,9 @@ import com.openbravo.basic.BasicException;
 import com.openbravo.data.loader.DataRead;
 import com.openbravo.data.loader.SerializableRead;
 import com.openbravo.format.Formats;
-
+/**
+ * Clase serializable utilizada para efectuar pagos de cheque y de débito.
+ */
 public class PaymentInfoTicket extends PaymentInfo implements SerializableRead  {
     
     private static final long serialVersionUID = 8865238639097L;
@@ -33,7 +35,7 @@ public class PaymentInfoTicket extends PaymentInfo implements SerializableRead  
     
     /** Creates a new instance of PaymentInfoCash */
     public PaymentInfoTicket(double dTicket, String sName) {
-        m_sName = sName;
+        m_sName = sName; // "cheque" y "debt" (tambien "cashrefund")
         m_dTicket = dTicket;
     }
     
@@ -48,7 +50,7 @@ public class PaymentInfoTicket extends PaymentInfo implements SerializableRead  
         m_dTicket = 0.0;
         m_transactionID = null;
      }
-    
+    /** Método de la interfase SerializableRead*/
     public void readValues(DataRead dr) throws BasicException {
         m_sName = dr.getString(1);
         m_dTicket = dr.getDouble(2).doubleValue();
